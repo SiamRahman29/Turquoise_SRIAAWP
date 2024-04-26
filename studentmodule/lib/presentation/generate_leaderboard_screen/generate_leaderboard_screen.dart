@@ -21,11 +21,21 @@ class GenerateLeaderboardScreen extends StatelessWidget {
                   width: 430.h,
                 ),
                 SizedBox(height: 27.v),
-                Text("Generated Leaderboard", style: theme.textTheme.headlineLarge),
+                Text("Leaderboard", style: theme.textTheme.headlineLarge),
                 SizedBox(height: 48.v),
                 Container(
                   width: 256.h,
+                  padding: EdgeInsets.all(18.0),
                   margin: EdgeInsets.only(bottom: 312.v),
+                  decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Set your desired border color
+                    width: 1.0, // Set your desired border width
+                    
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
+                  
+                  ),
                   child: FutureBuilder<QuerySnapshot>(
                     future: FirebaseFirestore.instance.collection('Turquoise').doc('Students').collection('PersonalInfo').get(),
                     builder: (context, snapshot) {
@@ -49,6 +59,7 @@ class GenerateLeaderboardScreen extends StatelessWidget {
                           return _buildLeaderboardEntry(
                             docs[index]['Name'],
                             docs[index]['TotalPoints'],
+                            index
                           );
                         },
                       );
@@ -98,10 +109,63 @@ class GenerateLeaderboardScreen extends StatelessWidget {
 
   // Your existing methods here
 
+/*
   Widget _buildLeaderboardEntry(String playerName, int points) {
-    return Text("$playerName - $points");
-  }
-  
+  return Container(
+    padding: EdgeInsets.symmetric(vertical: 8.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          playerName,
+          style: TextStyle(
+            fontSize: 18.0, // Set your desired font size
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          '$points Points',
+          style: TextStyle(
+            fontSize: 18.0, // Set your desired font size
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    ),
+  );
+}
+*/
+Widget _buildLeaderboardEntry(String playerName, int points, int index) {
+  bool isTopThree = index < 3; // Check if the entry is in the top 3
+
+  return Container(
+    margin: EdgeInsets.symmetric(vertical: 8.0),
+    padding: EdgeInsets.symmetric(vertical: 8.0),
+    
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      
+      children: [
+        Text(
+          playerName,
+          style: TextStyle(
+            fontSize: 18.0,
+            fontWeight: isTopThree ? FontWeight.bold : FontWeight.normal,
+            color: isTopThree ? Colors.green : Colors.black,
+          ),
+        ),
+        Text(
+          '$points Points',
+          style: TextStyle(
+            fontSize: 18.0,
+            fontWeight: isTopThree ? FontWeight.bold : FontWeight.normal,
+            color: isTopThree ? Colors.green : Colors.black,
+          ),
+        ),
+      ],
+    ),
+  );
+}
 
   void onTapImgHomeThree(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.landingScreen);

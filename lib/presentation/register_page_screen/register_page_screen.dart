@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:first/core/app_export.dart';
-import 'package:first/widgets/custom_elevated_button.dart';
-import 'package:first/widgets/custom_text_form_field.dart';
+import 'package:Turquoise/core/app_export.dart';
+import 'package:Turquoise/widgets/custom_elevated_button.dart';
+import 'package:Turquoise/widgets/custom_text_form_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterPageScreen extends StatelessWidget {

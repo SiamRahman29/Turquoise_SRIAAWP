@@ -65,7 +65,7 @@ class _SearchStudentScreenState extends State<SearchStudentScreen> {
                                     imagePath: ImageConstant.imgFilter,
                                     height: 15.v,
                                     width: 25.h)),
-                            hintText: "Choose Class",
+                            hintText: "Pilih Kelas",
                             alignment: Alignment.bottomCenter,
                             items: dropdownItemList,
                             onChanged: (value) async {
@@ -74,19 +74,20 @@ class _SearchStudentScreenState extends State<SearchStudentScreen> {
                                 filterStudentsByClass();
                               });
                             }),
-                        Align(
-                            alignment: Alignment.topLeft,
+                        
+                        /*Align(
+                            alignment: Alignment.centerLeft,
                             child: Padding(
-                                padding: EdgeInsets.only(left: 38.h),
+                                padding: EdgeInsets.only(bottom: 68.h),
                                 child: Text("Standard",
-                                    style: theme.textTheme.titleLarge)))
+                                    style: theme.textTheme.titleLarge)))*/
                       ])),
                   SizedBox(height: 28.v),
                   Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
-                          padding: EdgeInsets.only(left: 65.h),
-                          child: Text("Name of Student",
+                          padding: EdgeInsets.only(left: 65.h,bottom: 5.h),
+                          child: Text("Nama Pelajar",
                               style: theme.textTheme.titleLarge))),
                   Padding(
                       padding: EdgeInsets.only(left: 43.h, right: 54.h),
@@ -98,13 +99,13 @@ class _SearchStudentScreenState extends State<SearchStudentScreen> {
                                   imagePath: ImageConstant.imgFilter,
                                   height: 15.v,
                                   width: 25.h)),
-                          hintText: "Choose Student",
+                          hintText: "Pilih Pelajar",
                           items: filteredStudentList,
                           onChanged: (value) {})),
                   Spacer(flex: 58),
                   CustomOutlinedButton(
                       width: 146.h,
-                      text: "Write Report",
+                      text: "Tulis Laporan",
                       onPressed: () {
                         onTapWriteReport(context);
                       }),
@@ -125,7 +126,7 @@ class _SearchStudentScreenState extends State<SearchStudentScreen> {
                                       onTapView(context);
                                     },
                                     child: Container(
-                                        height: 27.v,
+                                        height:57.v,
                                         width: 105.h,
                                         decoration: BoxDecoration(
                                             color: appTheme.blueGray100)))),
@@ -150,6 +151,7 @@ class _SearchStudentScreenState extends State<SearchStudentScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              /*
               CustomImageView(
                   imagePath: ImageConstant.imgHome3,
                   height: 42.v,
@@ -157,7 +159,7 @@ class _SearchStudentScreenState extends State<SearchStudentScreen> {
                   margin: EdgeInsets.only(top: 5.v, bottom: 10.v),
                   onTap: () {
                     onTapImgHomeThree(context);
-                  }),
+                  }),*/
               Container(
                   height: 57.v,
                   width: 52.h,
@@ -168,9 +170,11 @@ class _SearchStudentScreenState extends State<SearchStudentScreen> {
                         child: Container(
                             height: 52.adaptSize,
                             width: 52.adaptSize,
-                            decoration: BoxDecoration(
-                                color: appTheme.black900,
-                                borderRadius: BorderRadius.circular(26.h)))),
+                            //decoration: BoxDecoration(
+                              //  color: appTheme.black900,
+                                //borderRadius: BorderRadius.circular(26.h))
+                                )),
+                    /*
                     CustomImageView(
                         imagePath: ImageConstant.imgDefaultPfp2,
                         height: 56.v,
@@ -178,7 +182,7 @@ class _SearchStudentScreenState extends State<SearchStudentScreen> {
                         alignment: Alignment.center,
                         onTap: () {
                           onTapImgDefaultPfpTwo(context);
-                        })
+                        })*/
                   ]))
             ]));
   }

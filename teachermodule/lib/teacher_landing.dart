@@ -1,57 +1,63 @@
 import 'package:flutter/material.dart';
+import 'ManagementMonthlyForm.dart' as ManagementMonthlyForm;
+import 'ManagementYearlyForm.dart' as ManagementYearlyForm;
+import 'TeacherMonthlyForm.dart' as TeacherMonthlyForm;
+import 'TeacherYearlyForm.dart' as TeacherYearlyForm;
 
 void main() {
-  runApp(MyApp2());
+  runApp(const MyApp2());
 }
 
 class MyApp2 extends StatelessWidget {
+  const MyApp2({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: TeacherModule(),
-      debugShowCheckedModeBanner: false
-    );
+    return const MaterialApp(
+        home: TeacherModule(), debugShowCheckedModeBanner: false);
   }
 }
 
-
 class TeacherModule extends StatelessWidget {
+  const TeacherModule({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Teacher Module'),
+        title: const Text('Teacher Module'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset('assets/school_logo.png', width: 100, height: 100),
-            SizedBox(height: 80),
+            const SizedBox(height: 80),
             ElevatedButton(
               onPressed: () {
                 // Navigate to the Monthly Self-Evaluation screen
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MonthlyEvaluationScreenWithSelection(),
+                    builder: (context) =>
+                        const MonthlyEvaluationScreenWithSelection(),
                   ),
                 );
               },
-              child: Text('Keberhasilan Bulanan / Monthly Self-Evaluation'),
+              child: const Text('Keberhasilan Bulanan / Monthly Self-Evaluation'),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             ElevatedButton(
               onPressed: () {
                 // Navigate to the Yearly Evaluation screen
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => YearlyEvaluationScreenWithSelection(),
+                    builder: (context) => const YearlyEvaluationScreenWithSelection(),
                   ),
                 );
               },
-              child: Text('Keberhasilan Tahunan / Yearly Evaluation'),
+              child: const Text('Keberhasilan Tahunan / Yearly Evaluation'),
             ),
           ],
         ),
@@ -61,6 +67,8 @@ class TeacherModule extends StatelessWidget {
 }
 
 class MonthlyEvaluationScreenWithSelection extends StatefulWidget {
+  const MonthlyEvaluationScreenWithSelection({super.key});
+
   @override
   _MonthlyEvaluationScreenWithSelectionState createState() =>
       _MonthlyEvaluationScreenWithSelectionState();
@@ -97,16 +105,16 @@ class _MonthlyEvaluationScreenWithSelectionState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Monthly Self-Evaluation'),
+        title: const Text('Monthly Self-Evaluation'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('PILIH YANG BERKENAAN'),
-            Text('CHOOSE THE RELATED'),
-            SizedBox(height: 50),
-            Text('Tahun/Year:'),
+            const Text('PILIH YANG BERKENAAN'),
+            const Text('CHOOSE THE RELATED'),
+            const SizedBox(height: 50),
+            const Text('Tahun/Year:'),
             DropdownButton<String>(
               value: selectedYear,
               items: years.map((year) {
@@ -121,8 +129,8 @@ class _MonthlyEvaluationScreenWithSelectionState
                 });
               },
             ),
-            SizedBox(height: 30),
-            Text('Bulan/Month:'),
+            const SizedBox(height: 30),
+            const Text('Bulan/Month:'),
             DropdownButton<String>(
               value: selectedMonth,
               items: months.map((month) {
@@ -137,23 +145,25 @@ class _MonthlyEvaluationScreenWithSelectionState
                 });
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // Handle the selected year and month, e.g., submit the evaluation
-                print('Selected Year: $selectedYear, Selected Month: $selectedMonth');
+                print(
+                    'Selected Year: $selectedYear, Selected Month: $selectedMonth');
 
                 // Navigate to the AfterSelectionPage and pass the selected option
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AfterSelectionPage(
-                      selectedOption: 'Monthly Evaluation for $selectedMonth $selectedYear',
+                    builder: (context) => AfterSelectionPageMonth(
+                      selectedOption:
+                          'Monthly Evaluation for $selectedMonth $selectedYear',
                     ),
                   ),
                 );
               },
-              child: Text('Hantar / Submit'),
+              child: const Text('Hantar / Submit'),
             ),
           ],
         ),
@@ -163,12 +173,15 @@ class _MonthlyEvaluationScreenWithSelectionState
 }
 
 class YearlyEvaluationScreenWithSelection extends StatefulWidget {
+  const YearlyEvaluationScreenWithSelection({super.key});
+
   @override
   _YearlyEvaluationScreenWithSelectionState createState() =>
       _YearlyEvaluationScreenWithSelectionState();
 }
 
-class _YearlyEvaluationScreenWithSelectionState extends State<YearlyEvaluationScreenWithSelection> {
+class _YearlyEvaluationScreenWithSelectionState
+    extends State<YearlyEvaluationScreenWithSelection> {
   String? selectedYear;
   List<String> years = ['2022', '2023', '2024', '2025'];
 
@@ -182,16 +195,16 @@ class _YearlyEvaluationScreenWithSelectionState extends State<YearlyEvaluationSc
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Keberhasilan Tahunan / Yearly Evaluation'),
+        title: const Text('Keberhasilan Tahunan / Yearly Evaluation'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('PILIH YANG BERKENAAN'),
-            Text('CHOOSE THE RELATED'),
-            SizedBox(height: 50),
-            Text('Tahun/Year:'),
+            const Text('PILIH YANG BERKENAAN'),
+            const Text('CHOOSE THE RELATED'),
+            const SizedBox(height: 50),
+            const Text('Tahun/Year:'),
             DropdownButton<String>(
               value: selectedYear,
               items: years.map((year) {
@@ -206,20 +219,20 @@ class _YearlyEvaluationScreenWithSelectionState extends State<YearlyEvaluationSc
                 });
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // Navigate to the AfterSelectionPage and pass the selected option
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AfterSelectionPage(
+                    builder: (context) => AfterSelectionPageYear(
                       selectedOption: 'Yearly Evaluation for $selectedYear',
                     ),
                   ),
                 );
               },
-              child: Text('Hantar / Submit'),
+              child: const Text('Hantar / Submit'),
             )
           ],
         ),
@@ -228,63 +241,62 @@ class _YearlyEvaluationScreenWithSelectionState extends State<YearlyEvaluationSc
   }
 }
 
-
-class AfterSelectionPage extends StatelessWidget {
+class AfterSelectionPageMonth extends StatelessWidget {
   final String selectedOption;
 
   // Constructor
-  AfterSelectionPage({required this.selectedOption});
+  const AfterSelectionPageMonth({super.key, required this.selectedOption});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('After Selection Page'),
+        title: const Text('After Selection Page'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('You selected:'),
+            const Text('You selected:'),
             Text(
               selectedOption,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 20),
-            Text('Choose Your Role'),
-            SizedBox(height: 10),
+            const SizedBox(height: 20),
+            const Text('Choose Your Role'),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
                 // Navigate to the management evaluation page
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ManagementEvaluationPage(),
+                    builder: (context) => const ManagementEvaluationMonthlyPage(),
                   ),
                 );
               },
-              child: Text('Management'),
+              child: const Text('Management'),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
                 // Navigate to the teacher form evaluation page
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => TeacherEvaluationFormPage(teacherName: 'SelectedTeacher'),
+                    builder: (context) => const TeacherMonthlyForm.MyApp(),
                   ),
                 );
               },
-              child: Text('Teacher'),
+              child: const Text('Teacher'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // Navigate back to the previous page (TeacherModule)
                 Navigator.pop(context);
               },
-              child: Text('Back to Teacher Module'),
+              child: const Text('Back to Teacher Module'),
             ),
           ],
         ),
@@ -293,14 +305,79 @@ class AfterSelectionPage extends StatelessWidget {
   }
 }
 
-class ManagementEvaluationPage extends StatefulWidget {
+class AfterSelectionPageYear extends StatelessWidget {
+  final String selectedOption;
+
+  // Constructor
+  const AfterSelectionPageYear({super.key, required this.selectedOption});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('After Selection Page'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text('You selected:'),
+            Text(
+              selectedOption,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20),
+            const Text('Choose Your Role'),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                // Navigate to the management evaluation page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ManagementEvaluationYearlyPage(),
+                  ),
+                );
+              },
+              child: const Text('Management'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                // Navigate to the teacher form evaluation page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const TeacherYearlyForm.MyApp(),
+                  ),
+                );
+              },
+              child: const Text('Teacher'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Navigate back to the previous page (TeacherModule)
+                Navigator.pop(context);
+              },
+              child: const Text('Back to Teacher Module'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ManagementEvaluationYearlyPage extends StatefulWidget {
+  const ManagementEvaluationYearlyPage({super.key});
+
   @override
   _ManagementEvaluationPageState createState() =>
       _ManagementEvaluationPageState();
 }
 
-class _ManagementEvaluationPageState
-    extends State<ManagementEvaluationPage> {
+class _ManagementEvaluationYearlyPageState extends State<ManagementEvaluationYearlyPage> {
   List<String> teachers = ['Teacher A', 'Teacher B', 'Teacher C'];
   String? selectedTeacher;
 
@@ -308,15 +385,15 @@ class _ManagementEvaluationPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Management Evaluation Page'),
+        title: const Text('Management Evaluation Page'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Choose the teacher related:'),
-            SizedBox(height: 20),
-            Text('Select Teacher:'),
+            const Text('Choose the teacher related:'),
+            const SizedBox(height: 20),
+            const Text('Select Teacher:'),
             DropdownButton<String>(
               value: selectedTeacher,
               items: teachers.map((teacher) {
@@ -334,7 +411,7 @@ class _ManagementEvaluationPageState
                 });
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 if (selectedTeacher != null) {
@@ -342,7 +419,7 @@ class _ManagementEvaluationPageState
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => TeacherEvaluationFormPage(teacherName: selectedTeacher!),
+                      builder: (context) => const ManagementYearlyForm.MyApp(),
                     ),
                   );
                 } else {
@@ -351,14 +428,15 @@ class _ManagementEvaluationPageState
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text('Error'),
-                        content: Text('Please select a teacher before submitting.'),
+                        title: const Text('Error'),
+                        content:
+                            const Text('Please select a teacher before submitting.'),
                         actions: <Widget>[
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).pop(); // Close the dialog
                             },
-                            child: Text('OK'),
+                            child: const Text('OK'),
                           ),
                         ],
                       );
@@ -366,7 +444,91 @@ class _ManagementEvaluationPageState
                   );
                 }
               },
-              child: Text('Submit'),
+              child: const Text('Submit'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ManagementEvaluationMonthlyPage extends StatefulWidget {
+  const ManagementEvaluationMonthlyPage({super.key});
+
+  @override
+  _ManagementEvaluationPageState createState() =>
+      _ManagementEvaluationPageState();
+}
+
+class _ManagementEvaluationPageState extends State<ManagementEvaluationMonthlyPage> {
+  List<String> teachers = ['Teacher A', 'Teacher B', 'Teacher C'];
+  String? selectedTeacher;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Management Evaluation Page'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text('Choose the teacher related:'),
+            const SizedBox(height: 20),
+            const Text('Select Teacher:'),
+            DropdownButton<String>(
+              value: selectedTeacher,
+              items: teachers.map((teacher) {
+                return DropdownMenuItem<String>(
+                  value: teacher,
+                  child: Text(teacher),
+                );
+              }).toList(),
+              onChanged: (String? teacher) {
+                // Handle the selected teacher
+                print('Selected Teacher: $teacher');
+                // You can perform actions based on the selected teacher
+                setState(() {
+                  selectedTeacher = teacher;
+                });
+              },
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                if (selectedTeacher != null) {
+                  // Navigate to the next page with the selected teacher's evaluation form
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ManagementMonthlyForm.MyApp(),
+                    ),
+                  );
+                } else {
+                  // Show an alert or some indication that a teacher must be selected
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Error'),
+                        content:
+                            const Text('Please select a teacher before submitting.'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(); // Close the dialog
+                            },
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
+              },
+              child: const Text('Submit'),
             ),
           ],
         ),
@@ -379,13 +541,13 @@ class TeacherEvaluationFormPage extends StatelessWidget {
   final String teacherName;
 
   // Constructor
-  TeacherEvaluationFormPage({required this.teacherName});
+  const TeacherEvaluationFormPage({super.key, required this.teacherName});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Teacher Evaluation Form'),
+        title: const Text('Teacher Evaluation Form'),
       ),
       body: Center(
         child: Column(

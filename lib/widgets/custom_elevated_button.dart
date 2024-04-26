@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:first/core/app_export.dart';
-import 'package:first/widgets/base_button.dart';
+import 'package:Turquoise/core/app_export.dart';
+import 'package:Turquoise/widgets/base_button.dart';
 
 class CustomElevatedButton extends BaseButton {
   CustomElevatedButton({

@@ -3,16 +3,28 @@ import 'package:studentmodule3/core/app_export.dart';
 import 'package:studentmodule3/widgets/custom_drop_down.dart';
 import 'package:studentmodule3/widgets/custom_outlined_button.dart';
 import 'package:studentmodule3/widgets/custom_text_form_field.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 // ignore: must_be_immutable
-class ReportGoodDeedScreen extends StatelessWidget {
-  ReportGoodDeedScreen({Key? key}) : super(key: key);
+class ReportGoodDeedScreen extends StatefulWidget {
+  const ReportGoodDeedScreen({Key? key}) : super(key: key);
 
-  List<String> dropdownItemList = ["Salaam", "Cleaning", "Help others", "Show kindness", "Compassion"];
+  @override
+  _ReportGoodDeedScreenState createState() => _ReportGoodDeedScreenState();
+}
 
-  TextEditingController vectorTwoController = TextEditingController();
+class _ReportGoodDeedScreenState extends State<ReportGoodDeedScreen> {
+  List<String> dropdownItemList = [
+    "Salaam-10",
+    "Pembersihan-10",
+    "Tunjukkan Kebaikan-15",
+    "Belas Kasihan-15"
+  ];
+
+  TextEditingController vectorTwoPointsController = TextEditingController();
+  TextEditingController vectorTwoDatesController = TextEditingController();
   TextEditingController remarksController = TextEditingController();
-
+  String selectedDeed = "";
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -32,33 +44,40 @@ class ReportGoodDeedScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 70.h),
-                  child: Text("Good Deed", style: theme.textTheme.headlineSmall),
+                  padding: EdgeInsets.only(left: 40.h),
+                  child: Text("Amalan Baik-Mata Lalai",
+                      style: theme.textTheme.headlineSmall),
                 ),
               ),
               SizedBox(height: 1.v),
               Padding(
-                padding: EdgeInsets.only(left: 44.h, right: 53.h),
+                padding: EdgeInsets.symmetric(horizontal: 44.h),
                 child: CustomDropDown(
                   icon: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 30.h, vertical: 25.v),
+                    margin:
+                        EdgeInsets.symmetric(horizontal: 10.h, vertical: 25.v),
                     child: CustomImageView(
                       imagePath: ImageConstant.imgFilter,
                       height: 15.v,
                       width: 25.h,
                     ),
                   ),
-                  hintText: "Choose Deed",
+                  hintText: "Pilih Akta",
                   items: dropdownItemList,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    setState(() {
+                      selectedDeed = value;
+                    });
+                  },
                 ),
               ),
               SizedBox(height: 29.v),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 81.h),
-                  child: Text("Date", style: theme.textTheme.headlineSmall),
+                  padding: EdgeInsets.only(left: 41.h),
+                  child: Text("Mata          Tarikh",
+                      style: theme.textTheme.headlineSmall),
                 ),
               ),
               SizedBox(height: 1.v),
@@ -67,8 +86,16 @@ class ReportGoodDeedScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     Expanded(
+                      //To collect points
                       child: CustomTextFormField(
-                        controller: vectorTwoController,
+                        controller: vectorTwoPointsController,
+                        textInputAction: TextInputAction.done,
+                      ),
+                    ),
+                    Expanded(
+                      //To collect date
+                      child: CustomTextFormField(
+                        controller: vectorTwoDatesController,
                         textInputAction: TextInputAction.done,
                       ),
                     ),
@@ -83,7 +110,8 @@ class ReportGoodDeedScreen extends StatelessWidget {
                       child: Center(
                         child: Text(
                           "DD/MM/YY",
-                          style: theme.textTheme.caption!.copyWith(color: appTheme.black900),
+                          style: theme.textTheme.bodySmall!
+                              .copyWith(color: appTheme.black900),
                         ),
                       ),
                     ),
@@ -95,10 +123,10 @@ class ReportGoodDeedScreen extends StatelessWidget {
               SizedBox(height: 87.v),
               CustomOutlinedButton(
                 width: 146.h,
-                text: "Submit",
+                text: "Hantar",
                 buttonTextStyle: CustomTextStyles.headlineSmallBold,
                 onPressed: () {
-                  onTapSubmit(context);
+                  onTapSubmit(context, selectedDeed);
                 },
               ),
               Spacer(),
@@ -113,7 +141,7 @@ class ReportGoodDeedScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.topCenter,
                       child: Container(
-                        height: 27.v,
+                        height: 57.v,
                         width: 105.h,
                         decoration: BoxDecoration(color: appTheme.blueGray100),
                       ),
@@ -126,7 +154,8 @@ class ReportGoodDeedScreen extends StatelessWidget {
                         },
                         child: Padding(
                           padding: EdgeInsets.only(left: 21.h),
-                          child: Text("Back", style: theme.textTheme.headlineSmall),
+                          child: Text("Back",
+                              style: theme.textTheme.headlineSmall),
                         ),
                       ),
                     ),
@@ -149,7 +178,7 @@ class ReportGoodDeedScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          CustomImageView(
+          /*CustomImageView(
             imagePath: ImageConstant.imgHome3,
             height: 42.v,
             width: 50.h,
@@ -157,7 +186,7 @@ class ReportGoodDeedScreen extends StatelessWidget {
             onTap: () {
               onTapImgHomeThree(context);
             },
-          ),
+          ),*/
           Container(
             height: 56.v,
             width: 52.h,
@@ -170,12 +199,13 @@ class ReportGoodDeedScreen extends StatelessWidget {
                   child: Container(
                     height: 52.adaptSize,
                     width: 52.adaptSize,
-                    decoration: BoxDecoration(
+                    /*decoration: BoxDecoration(
                       color: appTheme.black900,
                       borderRadius: BorderRadius.circular(26.h),
-                    ),
+                    ),*/
                   ),
                 ),
+                /*
                 CustomImageView(
                   imagePath: ImageConstant.imgDefaultPfp2,
                   height: 56.v,
@@ -184,7 +214,7 @@ class ReportGoodDeedScreen extends StatelessWidget {
                   onTap: () {
                     onTapImgDefaultPfpTwo(context);
                   },
-                ),
+                ),*/
               ],
             ),
           ),
@@ -203,7 +233,7 @@ class ReportGoodDeedScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 24.h),
             child: Text(
-              "Remarks",
+              "Kenyataan",
               style: CustomTextStyles.headlineSmallBold,
             ),
           ),
@@ -240,8 +270,38 @@ class ReportGoodDeedScreen extends StatelessWidget {
     Navigator.pushNamed(context, AppRoutes.teacherInfoScreen);
   }
 
-  void onTapSubmit(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.generateLeaderboardScreen);
+  void onTapSubmit(BuildContext context, String selectedDeed) async {
+    Navigator.pushNamed(context, AppRoutes.landingScreen);
+    // Extract values from your controllers
+    //String selectedDeed = dropdownItemList.first; // Replace with the actual logic to get the selected item
+    String points = vectorTwoPointsController.text;
+    String date = vectorTwoDatesController.text;
+    String remarks = remarksController.text;
+
+    // Create a Firestore instance
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+    // Create a reference to the 'goodDeeds' collection
+    CollectionReference goodDeedsCollection = firestore
+        .collection('Turquoise')
+        .doc('Teachers')
+        .collection('GoodDeeds');
+
+    try {
+      // Add a new document with the extracted data
+      await goodDeedsCollection.add({
+        'deed': selectedDeed,
+        'points': points,
+        'date': date,
+        'remarks': remarks,
+      });
+
+      // Navigate to the desired screen after successful submission
+      Navigator.pushNamed(context, AppRoutes.landingScreen);
+    } catch (e) {
+      // Handle errors, e.g., show a snackbar or log the error
+      print('Error submitting data: $e');
+    }
   }
 
   void onTapTxtBack(BuildContext context) {

@@ -1,5 +1,5 @@
-import 'package:first/core/app_export.dart';
-import 'package:first/widgets/custom_outlined_button.dart';
+import 'package:Turquoise/core/app_export.dart';
+import 'package:Turquoise/widgets/custom_outlined_button.dart';
 import 'package:flutter/material.dart';
 
 class HomePageScreen extends StatelessWidget {
@@ -33,7 +33,7 @@ class HomePageScreen extends StatelessWidget {
               SizedBox(height: 44.v),
               CustomOutlinedButton(
                 width: 220.h,
-                text: "Teacher\nEvaluation",
+                text: "Teacher\nModule",
                 //alignment: Alignment.center,
                 onPressed: () {
                   onTapView2(context);
@@ -42,7 +42,7 @@ class HomePageScreen extends StatelessWidget {
               SizedBox(height: 44.v),
               CustomOutlinedButton(
                 width: 220.h,
-                text: "Student\nEvaluation",
+                text: "Student\nModule",
                 //alignment: Alignment.center,
                 onPressed: () {
                   onTapView(context);
@@ -98,10 +98,10 @@ class HomePageScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 15.v),
-          Text(
-            "Teacher Name",
-            style: theme.textTheme.titleLarge,
-          ),
+          //Text(
+            //"Teacher Name",
+            //style: theme.textTheme.titleLarge,
+          //),
         ],
       ),
     );

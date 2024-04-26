@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:first/presentation/home_page_screen/home_page_screen.dart';
-import 'package:first/presentation/register_page_screen/register_page_screen.dart';
+import 'package:Turquoise/presentation/home_page_screen/home_page_screen.dart';
+import 'package:Turquoise/presentation/register_page_screen/register_page_screen.dart';
 import 'package:studentmodule3/main.dart';
 import 'package:untitled/teacher_landing.dart';
 
